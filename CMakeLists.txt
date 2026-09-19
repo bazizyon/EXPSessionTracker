@@ -40,6 +40,8 @@ target_include_directories(EXPSessionTracker PRIVATE
 
 target_compile_options(EXPSessionTracker PRIVATE /EHsc /MP)
 
-set_target_properties(EXPSessionTracker PROPERTIES
-        RUNTIME_OUTPUT_DIRECTORY "C:/Program Files (x86)/Nostale/mods"
-)
+if(NOT DEFINED ENV{CI})
+    set_target_properties(ExampleMod PROPERTIES
+            RUNTIME_OUTPUT_DIRECTORY "C:/Program Files (x86)/Nostale/mods"
+    )
+endif()
