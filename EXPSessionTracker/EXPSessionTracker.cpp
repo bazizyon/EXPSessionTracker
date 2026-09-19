@@ -89,6 +89,36 @@ namespace {
         }
     }
 
+    void StyleGraphicButton(TEWGraphicButtonWidget* graphicButton) {
+        delete[] graphicButton->imageData.atlasFrames;
+        graphicButton->imageData = ImageData(
+            9,
+            1593835585,
+            512,
+            512,
+            new AtlasFrame[] {
+                AtlasFrame(419, 308, 5, 24),
+                AtlasFrame(424, 308, 10, 24),
+                AtlasFrame(409, 308, 10, 24),
+                AtlasFrame(445, 308, 5, 24),
+                AtlasFrame(450, 308, 10, 24),
+                AtlasFrame(435, 308, 10, 24),
+                AtlasFrame(471, 308, 5, 24),
+                AtlasFrame(476, 308, 10, 24),
+                AtlasFrame(461, 308, 10, 24)
+            });
+        graphicButton->nineSliceInfo = {
+            72,
+            25,
+            82,
+            25,
+            10,
+            0,
+            10,
+            0
+        };
+        graphicButton->sliceCount = 3;
+    }
     void AddLabelToWindow(TEWCustomPanelWidget* window, const wchar_t* windowName) {
         const auto windowLabel = Widget::Create<TEWLabel>(CachedHost);
         windowLabel->SetText(windowName);
@@ -404,10 +434,11 @@ namespace {
         partnerGAText->SetText(L"0");
 
         toggleSessionButton = Widget::Create<TEWGraphicButtonWidget>(CachedHost);
-        toggleSessionButton->rect = {195, 40, 260, 90};
+        toggleSessionButton->rect = {193, 40, 258, 90};
         toggleSessionButton->color = Color(255, 0, 255, 51);
         toggleSessionButton->imageData.imageName = 1593835620;
         delete[] toggleSessionButton->imageData.atlasFrames;
+        toggleSessionButton->imageData.frameCount = 9;
         toggleSessionButton->imageData.atlasFrames = new AtlasFrame[9];
         toggleSessionButton->imageData.atlasFrames[0] = AtlasFrame{4,   420, 3, 24};
         toggleSessionButton->imageData.atlasFrames[1] = AtlasFrame{66,  420, 4, 24};
@@ -419,14 +450,14 @@ namespace {
         toggleSessionButton->imageData.atlasFrames[7] = AtlasFrame{208, 420, 4, 24};
         toggleSessionButton->imageData.atlasFrames[8] = AtlasFrame{142, 420, 5, 24};
         toggleSessionButton->nineSliceInfo = NineSliceInfo(
-            55,
-            25,
-            60,
-            25,
-            5,
-            0,
-            4,
-            0);
+        55,
+        25,
+        60,
+        25,
+        5,
+        0,
+        5,
+        0);
         toggleSessionButton->callbackFunction = reinterpret_cast<uint32_t>(ToggleSession);
         toggleSessionButton->callbackArgument = reinterpret_cast<uint32_t>(toggleSessionButton);
 
@@ -439,10 +470,11 @@ namespace {
         toggleSessionButton->childrenList->push_back(toggleSessionLabel);
 
         resetSessionButton = Widget::Create<TEWGraphicButtonWidget>(CachedHost);
-        resetSessionButton->rect = {195, 75, 260, 125};
+        resetSessionButton->rect = {193, 75, 258, 125};
         resetSessionButton->color = Color(255, 132, 12, 35);
         resetSessionButton->imageData.imageName = 1593835620;
         delete[] resetSessionButton->imageData.atlasFrames;
+        resetSessionButton->imageData.frameCount = 9;
         resetSessionButton->imageData.atlasFrames = new AtlasFrame[9];
         resetSessionButton->imageData.atlasFrames[0] = AtlasFrame{4,   420, 3, 24};
         resetSessionButton->imageData.atlasFrames[1] = AtlasFrame{66,  420, 4, 24};
@@ -454,14 +486,14 @@ namespace {
         resetSessionButton->imageData.atlasFrames[7] = AtlasFrame{208, 420, 4, 24};
         resetSessionButton->imageData.atlasFrames[8] = AtlasFrame{142, 420, 5, 24};
         resetSessionButton->nineSliceInfo = NineSliceInfo(
-            55,
-            25,
-            60,
-                25,
-                5,
-                0,
-                4,
-                0);
+        55,
+        25,
+        60,
+        25,
+        5,
+        0,
+        5,
+        0);
         resetSessionButton->callbackFunction = reinterpret_cast<uint32_t>(ResetSession);
         resetSessionButton->callbackArgument = reinterpret_cast<uint32_t>(resetSessionButton);
 
