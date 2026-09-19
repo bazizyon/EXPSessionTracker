@@ -90,7 +90,7 @@ namespace {
     void AddLabelToWindow(TEWCustomPanelWidget* window, const wchar_t* windowName) {
         const auto windowLabel = Widget::Create<TEWLabel>(CachedHost);
         windowLabel->SetText(windowName);
-        windowLabel->rect = Rect(12, 11, 140, 30);
+        windowLabel->rect = Rect(12, 11, 200, 30);
         windowLabel->textColor = Color(255, 255, 255, 255);
         windowLabel->shadowColor = Color(255, 0, 0, 0);
         windowLabel->textAlignment = 1;
