@@ -80,6 +80,8 @@ namespace {
     float startAXP;
     float savedAXP;
 
+    bool tempInvisible = false;
+
     __declspec(naked) void HideWindow() {
         __asm {
             mov byte ptr [eax + 0x18], 0
@@ -665,8 +667,17 @@ extern "C" {
             sessionTracker = nullptr;
         }
     }
-    __declspec(dllexport) void ModTick(TLBSWidget* RootWidget) {
+    __declspec(dllexport) __cdecl void ModTick(TLBSWidget* RootWidget, const TickContext tickContext) {
         UpdateDisplay(RootWidget);
+        if (!tickContext.isPlayerLoaded) {
+            if (sessionTracker->isVisible) {
+                sessionTracker->isVisible = false;
+                tempInvisible = true;
+            }
+        } else if (tempInvisible) {
+            tempInvisible = false;
+            sessionTracker->isVisible = true;
+        }
     }
     __declspec(dllexport) void ModToggleMainWindow() {
         if (sessionTracker) sessionTracker->isVisible = !sessionTracker->isVisible;
